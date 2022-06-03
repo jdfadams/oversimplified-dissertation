@@ -1,0 +1,402 @@
+\documentclass{beamer}
+\usepackage{amsmath,amsthm}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{url}
+% \usetheme{Madrid}
+\usetheme{Boadilla}
+% \usecolortheme{Boadilla}
+\usepackage{multirow}
+
+\mode<presentation>
+
+\title{Renormalization and rigidity}
+
+\author{Joseph Adams}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+
+\titlepage
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Overview}
+    \tableofcontents
+\end{frame}
+
+\begin{frame}{The big picture}
+\begin{itemize}
+    \item Define renormalization of quadratic dynamical systems
+    \item Give sufficient conditions for the existence of \emph{a priori} bounds
+    \item Prove that these conditions imply combinatorial rigidity
+    \item To non-mathematicians: Sorry... This is a math talk.
+    \item To mathematicians: Sorry... I'll skip all the details.
+\end{itemize}
+\end{frame}
+
+\section{Background}
+\begin{frame}{Complex numbers}
+
+\begin{definition}
+A \emph{complex number} has the form $a+bi$, where $a$ and $b$ are real numbers, and $i=\sqrt{-1}$. $\mathbb{C}$ denotes the set of all complex numbers.
+\end{definition}
+
+\begin{itemize}
+    \item Addition: $(a+bi)+(c+di)=(a+c)+(b+d)i$
+    \item Multiplication: $(a+bi)\cdot(c+di)=(ac-bd)+(ad+bc)i$
+    \item We can visualize the complex numbers as a 2-dimensional plane.
+\end{itemize}
+
+% \begin{itemize}
+% \item First Sentence.
+% \item<2-> ``Appears''
+% \item<2->  Appears. Brueckner(2000)
+% \end{itemize}
+\end{frame}
+
+\begin{frame}{Complex functions}
+    \begin{itemize}
+        \item Elementary calculus considers functions $f:\mathbb{R}\rightarrow\mathbb{R}$.
+        \item Elementary calculus generalizes to functions $f:\mathbb{C}\rightarrow\mathbb{C}$.
+        \item A differentiable complex function $f$ has a derivative $f'$. Zeros of the derivative are \emph{critical points}
+        \item Complex functions can be iterated: $f^2(z)=f(f(z))$. The \emph{$n$-th iterate} of $f$ is $f^n(z)=\underbrace{f(...(f}_{n\text{ times}}(z))$.
+    \end{itemize}
+    \begin{example}
+        A \emph{complex quadratic} has the form $f(z)=z^2+c$, where $c$ is a complex number.
+        \begin{itemize}
+            \item $f'(z)=2z$, so $0$ is the critical point.
+            \item $f^2(z)=(z^2+c)^2+c$.
+        \end{itemize}
+    \end{example}
+\end{frame}
+
+\section{Dynamics}
+
+\begin{frame}{The Fatou set}
+Consider a complex quadratic $f_c(z)=z^2+c$.
+\begin{definition}
+The \emph{Fatou set} $K_c$ of $f_c$ is the set of $z$ such that $f_c^n(z)\not\rightarrow\infty$ as $n\rightarrow\infty$.
+\end{definition}
+\begin{definition}
+The \emph{Julia set} is the boundary of $K_c$.
+\end{definition}
+For historical reasons, we'll sometimes call $K_c$ the Julia set.
+\end{frame}
+
+\begin{frame}{The Julia set can be connected}
+\centering
+$c=-0.1226+0.7449i$
+
+\includegraphics[scale=0.25]{k_rabbit.png}
+\end{frame}
+
+\begin{frame}{The Julia set can be disconnected}
+\centering
+$c=-0.781+0.234j$
+
+\includegraphics[scale=0.25]{k_cantor.png}
+\end{frame}
+
+\begin{frame}{Parameter space for quadratic dynamics}
+\begin{theorem}[The fundamental dichotomy]
+$K_c$ is either connected or totally disconnected.
+\end{theorem}
+\begin{theorem}
+$K_c$ is connected if and only if $f_c^n(0)\not\rightarrow\infty$.
+\end{theorem}
+\begin{definition}
+The \emph{Mandelbrot set} $M$ is the set of $c$ such that $K_c$ is connected.
+\end{definition}
+\end{frame}
+
+\begin{frame}{The Mandelbrot set}
+\centering
+\includegraphics[scale=0.25]{m_default.png}
+
+Can you see the little copies of the Mandelbrot set?
+\end{frame}
+
+\section{Renormalization}
+
+\begin{frame}{Period 3: Little copy}
+\centering
+$c=-1.754877666246693$
+
+\includegraphics[scale=0.2]{m_p3.png}
+\includegraphics[scale=0.2]{m_default.png}
+\end{frame}
+
+\begin{frame}{Period 3: Julia set}
+\centering
+$c=-1.754877666246693$
+
+\includegraphics[scale=0.25]{k_p3.png}
+\end{frame}
+
+\begin{frame}{Period 4: Little copy}
+\centering
+$c=-0.156520166833755+1.032247108922832i$
+
+\includegraphics[scale=0.2]{m_default.png}
+\includegraphics[scale=0.2]{m_p4.png}
+\end{frame}
+
+\begin{frame}{Period 4: Julia set}
+\centering
+$c=-0.156520166833755+1.032247108922832i$
+
+\includegraphics[scale=0.25]{k_p4.png}
+\end{frame}
+
+\begin{frame}{Are there little-little copies?}
+
+{\bf Observations}
+\begin{itemize}
+    \item Little copies look like the Mandelbrot set.
+    \item We've seen little copies for periods 3 and 4.
+\end{itemize}
+{\bf Question}
+
+Is there a little-little copy in the period 4 little copy corresponding to the period 3 little copy in the Mandelbrot set?
+\end{frame}
+
+\begin{frame}{Period 12: Little copy}
+\centering
+$c=-0.167349208205021+1.041178661132973i$
+
+\includegraphics[scale=0.2]{m_p12.png}
+\includegraphics[scale=0.2]{m_p4.png}
+\end{frame}
+
+\begin{frame}{The period 12 LC corresponds to the period 3 LC}
+\centering
+\begin{tabular}{c c c}
+    \begin{tabular}{c}\includegraphics[scale=0.12]{m_p12.png}\end{tabular} &
+    \begin{tabular}{c}is to\end{tabular} &
+    \begin{tabular}{c}\includegraphics[scale=0.12]{m_p4.png}\end{tabular}
+    \\
+    & as &
+    \\
+    \begin{tabular}{c}\includegraphics[scale=0.12]{m_p3.png}\end{tabular} &
+    \begin{tabular}{c}is to\end{tabular} &
+    \begin{tabular}{c}\includegraphics[scale=0.12]{m_default.png}\end{tabular}
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Period 12: Julia set}
+\centering
+$c=-0.167349208205021+1.041178661132973i$
+
+\includegraphics[scale=0.25]{k_p12.png}
+
+It looks like a little period 3 Julia set is embedded in the period 4 Julia set.
+\end{frame}
+
+\begin{frame}{Renormalization 1: Zoom in to the little Julia set}
+\centering
+Zoom in to the center of the period 12 Julia set.
+
+\includegraphics[scale=0.2]{k_p12.png}
+\includegraphics[scale=0.2]{k_p12_zoom.png}
+\end{frame}
+
+\begin{frame}{Renormalization 2: Straighten out the little Julia set}
+\centering
+\includegraphics[scale=0.2]{k_p12_zoom.png}
+\includegraphics[scale=0.2]{k_p3.png}
+
+We obtain the period 3 Julia set.
+\end{frame}
+
+\begin{frame}{Combinatorial model: Forget about the little Julia set}
+\centering
+Blur your eyes so that each little period 3 Julia set just looks like a blob.
+
+\includegraphics[scale=0.2]{k_p12.png}
+\includegraphics[scale=0.2]{k_p4.png}
+
+We obtain the period 4 Julia set.
+\end{frame}
+
+\begin{frame}{Summary of renormalization}
+Let $f$ be a \emph{renormalizable} quadratic.
+\begin{definition}
+The \emph{renormalization} $Rf$ of $f$ is the quadratic obtained by zooming in to a little embedded Julia set.
+\end{definition}
+Strictly speaking, this renormalization scheme is called \emph{primitive} renormalization.
+\begin{definition}
+The \emph{combinatorial model} $Hf$ of $f$ is the shape/dynamics of the big Julia set. We can think of it as the quadratic obtained by replacing each little Julia set with a blob/disk.
+\end{definition}
+In mathematical literature, the combinatorial model is actually the \emph{Hubbard tree}.
+\end{frame}
+
+\begin{frame}{The big picture}
+
+\end{frame}
+
+\begin{frame}{Zooming in}
+
+\end{frame}
+
+\begin{frame}{Little copies}
+\centering
+\includegraphics[scale=0.7]{little_copy}
+\end{frame}
+
+\begin{frame}{Zooming in}
+
+\end{frame}
+
+\section{Frame title}
+
+ \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents
+\end{frame}
+\begin{frame}
+
+\frametitle{Frame title}
+
+
+\begin{itemize}
+\item<1>[1.] ``Appears and dissapears.'' Burchell et al (1998)
+\item<1>[2.] Appears and dissapears.
+\item<2->[3.] Reappears
+\begin{itemize}
+\item<2-> Appears;
+\item<2-> Appears
+\item<2-> Appears
+\item<2-> Appears
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Descriptive statistics}
+
+Add an image or table.
+\begin{center}
+\includegraphics[scale=0.85]{imagen1.png}%
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Model}
+
+\begin{equation}
+Y_i=\beta_0 + \beta_1 X_i+\beta_2 X_{2i} + \beta_3 Other_i + \gamma S_i+u_i
+\end{equation}
+
+
+
+\begin{columns}
+\column{.5\textwidth}
+\begin{block}{Y: Externality}
+\begin{itemize}
+\item Var1.
+\item Var2.
+\item Var3.
+\item Var4.
+\end{itemize}
+ \end{block}
+\begin{block}{Var7}
+\end{block}
+
+\column{.5\textwidth}
+\begin{block}{Var8: Socioeconomic characteristics}
+\begin{itemize}
+\item Var8.1
+\item Var8.2.
+\item Var8.3.
+\item Median income.
+\item Median home value.
+\end{itemize}
+\end{block}
+\begin{block}{S: State dummies}
+\end{block}
+\end{columns}
+\end{frame}
+
+
+\section{Results}
+
+ \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents
+\end{frame}
+
+\begin{frame}
+\frametitle{Frame title}
+
+
+\begin{center}
+\includegraphics[scale=0.7]{imagen1.png}%
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{ReSULT}
+
+
+\begin{center}
+\includegraphics[scale=0.75]{imagen2.png}%
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Result}
+
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Name & Turn & Height \\ \hline
+        Juan & 1 & 1.9 \\ \hline
+        Jose & 2 & 1.7 \\ \hline
+        Michael  & 3 & 1.95 \\ \hline
+    \end{tabular}
+\end{table}
+\end{frame}
+
+
+\section{Discussion}
+
+
+
+\begin{frame}
+\frametitle{ Discussion}
+
+\begin{itemize}
+\item[1.] Comment1
+\item[2.] Comment2.
+\item[3.] Comment3.
+\item[4.] Comment4.
+ \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\end{document}
