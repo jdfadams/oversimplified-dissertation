@@ -27,20 +27,16 @@ MANDELBROT_PARAMS = {
 }
 
 
-def square(x, y, l):
-    x0, x1 = x
+def square(center, e, l):
+    x, y = center.real, center.imag
+    x0, x1 = x - e, x + e
     x = np.linspace(x0, x1, l).reshape((1, l))
-    y0, y1 = y
+    y0, y1 = y - e, y + e
     y = np.linspace(y0, y1, l).reshape((l, 1))
     return x + y * 1j
 
 
-def square_from_tuple(center, e, ppu):
-    x, y = center.real, center.imag
-    return square((x - e, x + e), (y - e, y + e), ppu)
-
-
-def julia(c: complex, max_iters=50, view=square((-2, 2), (-2, 2), 500)):
+def julia(c: complex, max_iters=50, view=square(0, 2, 800)):
     z = view.copy()
     c = np.full(z.shape, c, dtype=complex)
     m = np.full(z.shape, True, dtype=bool)
@@ -52,7 +48,7 @@ def julia(c: complex, max_iters=50, view=square((-2, 2), (-2, 2), 500)):
     return escape_time
 
 
-def mandelbrot(max_iters=150, view=square((-2.2, 0.8), (-1.5, 1.5), 500)):
+def mandelbrot(max_iters=150, view=square(-0.7, 1.5, 800)):
     c = view
     z = np.zeros(c.shape, dtype=complex)
     m = np.full(c.shape, True, dtype=bool)
@@ -78,7 +74,7 @@ def draw(escape_time, *, cmap='magma', fname=None):
 def draw_julia(name):
     c, n, *rect_params = JULIA_PARAMS[name]
     if rect_params:
-        j = julia(c, max_iters=n, view=square_from_tuple(*rect_params))
+        j = julia(c, max_iters=n, view=square(*rect_params))
     else:
         j = julia(c, max_iters=n)
     draw(j, fname=f'k_{name}.png')
@@ -86,7 +82,7 @@ def draw_julia(name):
 
 def draw_mandelbrot(name):
     center, e, d, n = MANDELBROT_PARAMS[name]
-    m = mandelbrot(max_iters=n, view=square_from_tuple(center, e, d))
+    m = mandelbrot(max_iters=n, view=square(center, e, d))
     draw(m, fname=f'm_{name}.png')
 
 
