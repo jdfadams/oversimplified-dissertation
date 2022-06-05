@@ -9,17 +9,20 @@
 \usepackage{graphics}
 \usepackage{epsfig}
 \usepackage{url}
+\usepackage{tikz}
 % \usetheme{Madrid}
 \usetheme{Boadilla}
 % \usecolortheme{Boadilla}
 \usepackage{multirow}
+
+\DeclareMathOperator{\modulus}{mod}
 
 \mode<presentation>
 
 \title{Renormalization and rigidity}
 
 \author{Joseph Adams}
-\date{\today}
+\date{June 6, 2022}
 
 \begin{document}
 \begin{frame}
@@ -125,7 +128,7 @@ The \emph{Mandelbrot set} $M$ is the set of $c$ such that $K_c$ is connected.
 Can you see the little copies of the Mandelbrot set?
 \end{frame}
 
-\section{Renormalization}
+\section{Little copies}
 
 \begin{frame}{Period 3: Little copy}
 \centering
@@ -201,6 +204,8 @@ $c=-0.167349208205021+1.041178661132973i$
 It looks like a little period 3 Julia set is embedded in the period 4 Julia set.
 \end{frame}
 
+\section{Renormalization}
+
 \begin{frame}{Renormalization 1: Zoom in to the little Julia set}
 \centering
 Zoom in to the center of the period 12 Julia set.
@@ -227,176 +232,174 @@ Blur your eyes so that each little period 3 Julia set just looks like a blob.
 We obtain the period 4 Julia set.
 \end{frame}
 
-\begin{frame}{Summary of renormalization}
+\begin{frame}{Renormalization: A vague definition}
 Let $f$ be a \emph{renormalizable} quadratic.
 \begin{definition}
 The \emph{renormalization} $Rf$ of $f$ is the quadratic obtained by zooming in to a little embedded Julia set.
 \end{definition}
-Strictly speaking, this renormalization scheme is called \emph{primitive} renormalization.
+The renormalization scheme we'll discuss is called \emph{primitive} renormalization in mathematical literature.
 \begin{definition}
-The \emph{combinatorial model} $Hf$ of $f$ is the shape/dynamics of the big Julia set. We can think of it as the quadratic obtained by replacing each little Julia set with a blob/disk.
+The \emph{combinatorial model} $Hf$ of $f$ is the shape/dynamics of the big Julia set, where we forget about what happens on the little Julia sets.
 \end{definition}
-In mathematical literature, the combinatorial model is actually the \emph{Hubbard tree}.
+We can think of $Hf$ as the quadratic obtained by replacing each little Julia set with a blob/disk. In mathematical literature, the combinatorial model coincides with the \emph{Hubbard tree}.
 \end{frame}
 
-\begin{frame}{The big picture}
-
-\end{frame}
-
-\begin{frame}{Zooming in}
-
-\end{frame}
-
-\begin{frame}{Little copies}
-\centering
-\includegraphics[scale=0.7]{little_copy}
-\end{frame}
-
-\begin{frame}{Zooming in}
-
-\end{frame}
-
-\section{Frame title}
-
- \begin{frame}
-       \frametitle{Outline}
-       \tableofcontents
-\end{frame}
-\begin{frame}
-
-\frametitle{Frame title}
-
-
-\begin{itemize}
-\item<1>[1.] ``Appears and dissapears.'' Burchell et al (1998)
-\item<1>[2.] Appears and dissapears.
-\item<2->[3.] Reappears
-\begin{itemize}
-\item<2-> Appears;
-\item<2-> Appears
-\item<2-> Appears
-\item<2-> Appears
-\end{itemize}
-\end{itemize}
-
-\end{frame}
-
-
-
-
-
-\begin{frame}
-\frametitle{Descriptive statistics}
-
-Add an image or table.
+\begin{frame}{Renormalization: Definition via example}
 \begin{center}
-\includegraphics[scale=0.85]{imagen1.png}%
+    \includegraphics[scale=0.1]{k_p12.png}
+    \hspace{5pt}
+    \includegraphics[scale=0.2]{p12_schematic.png}
+    \hspace{5pt}
+    \includegraphics[scale=0.1]{k_p3.png}
 \end{center}
+\begin{enumerate}
+    \item Draw a small, topological disk $U$ around the central little Julia set.
+    \item Iterate $U$ until it returns to the central little Julia set. Let $V=f^4(U)$ denote the topological disk so obtained.
+    \item The central little Julia set is the set of points that never escape $U$ under iterates of $Rf=f^4$.
+    \item $Rf=f^4:U\rightarrow V$ is a period 4 renormalization of $f$.
+    \item  $Rf$ is \emph{quadratic-like} and equivalent to the quadratic associated with the period 3 Julia set.
+\end{enumerate}
 \end{frame}
 
+\section{\textit{A priori} bounds and rigidity}
 
+\begin{frame}{Quadratic-like maps}
 
-\begin{frame}
-\frametitle{Model}
-
-\begin{equation}
-Y_i=\beta_0 + \beta_1 X_i+\beta_2 X_{2i} + \beta_3 Other_i + \gamma S_i+u_i
-\end{equation}
-
-
-
-\begin{columns}
-\column{.5\textwidth}
-\begin{block}{Y: Externality}
+\only<1>{
+\begin{definition}A \emph{quadratic-like} map is a degree $2$ branched cover $f:U\rightarrow V$, where
 \begin{itemize}
-\item Var1.
-\item Var2.
-\item Var3.
-\item Var4.
+    \item $U$ and $V$ are topological disks,
+    \item $\overline{U}\subset V$, and
+    \item the Fatou set, $K=\bigcap_{n=1}^\infty f^{-n}(U)$, is connected.
 \end{itemize}
- \end{block}
-\begin{block}{Var7}
-\end{block}
-
-\column{.5\textwidth}
-\begin{block}{Var8: Socioeconomic characteristics}
-\begin{itemize}
-\item Var8.1
-\item Var8.2.
-\item Var8.3.
-\item Median income.
-\item Median home value.
-\end{itemize}
-\end{block}
-\begin{block}{S: State dummies}
-\end{block}
-\end{columns}
-\end{frame}
-
-
-\section{Results}
-
- \begin{frame}
-       \frametitle{Outline}
-       \tableofcontents
-\end{frame}
-
-\begin{frame}
-\frametitle{Frame title}
-
-
+The \emph{modulus} of $f$, denoted $\modulus f$, is the conformal thickness of the annulus $V\setminus\overline{U}$.
+\end{definition}
 \begin{center}
-\includegraphics[scale=0.7]{imagen1.png}%
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{ReSULT}
-
-
-\begin{center}
-\includegraphics[scale=0.75]{imagen2.png}%
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Result}
-
-
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{|l|l|l|}
-    \hline
-        Name & Turn & Height \\ \hline
-        Juan & 1 & 1.9 \\ \hline
-        Jose & 2 & 1.7 \\ \hline
-        Michael  & 3 & 1.95 \\ \hline
+    \begin{tabular}{c c}
+        \begin{tabular}{c}
+            \includegraphics[scale=0.5]{ql.png}
+        \end{tabular}
+        &
+        \parbox{5cm}{
+            \begin{align*}
+                U &= \text{light blue disk} \\
+                V &= \text{dark blue disk} \\
+                f &= \text{black arrow}\\
+                K &= \text{black continuum within }U
+            \end{align*}
+        }
     \end{tabular}
-\end{table}
-\end{frame}
+\end{center}
+}
 
-
-\section{Discussion}
-
-
-
-\begin{frame}
-\frametitle{ Discussion}
-
+\only<2>{
 \begin{itemize}
-\item[1.] Comment1
-\item[2.] Comment2.
-\item[3.] Comment3.
-\item[4.] Comment4.
- \end{itemize}
-
+    \item A quadratic-like map is equivalent, i.e., hybrid conjugate, to a quadratic.
+    \item A renormalization of a quadatic or quadratic-like map is a quadratic-like map.
+\end{itemize}
+\begin{example}
+Let $f(z)=z^2+c$ have a connected Julia set. The restriction of $f$ to a small disk around its Julia set is a quadratic-like map.
+\end{example}
+}
 \end{frame}
 
+\begin{frame}{Canonical renormalization leads to improvement of life}
+Let $f:U\rightarrow V$ be a quadratic-like renormalization. There's too much freedom in choosing $U$ and $V$.
+\begin{definition}
+If $U$ and $V$ are chosen so that they maximize $\modulus f$, then we call $f$ a \textit{canonical} renormalization.
+\end{definition}
 
+\begin{theorem}[Improvement of life]
+There exists a threshold $\mu>0$, depending only on certain combinatorial data, such that if $Rf$ is a canonical renormalization of $f$, then \[\modulus Rf<\mu \Rightarrow \modulus f < \mu/2.\]
+\end{theorem}
+% This theorem was proven by Jeremy Kahn for unicritical polynomial-like maps. I generalized this theorem to polynomial-like maps with more than one critical point.
+\end{frame}
 
+\begin{frame}{Infinite renormalization}
+\begin{definition}
+Suppose that a quadratic $f$ admits infinitely many renormalizations \[f_n=f^{p_n}:(U_n, K_n)\rightarrow (V_n, K_n)\] around its critical point.
+\begin{itemize}
+    \item $f$ is \textit{infinitely renormalizable}.
+    \item $f$ has \emph{bounded combinatorics} if $p_{n+1}/p_n\leq B<\infty$ for all $n$.
+    \item $f$ has \emph{a priori bounds} if $\modulus f_n\geq \mu>0$ for all $n$.
+\end{itemize}
+\end{definition}
+From now on, we'll assume that the renormalizations $f_n$ are canonical.
+\end{frame}
 
+\begin{frame}{Beau bounds}
 
+\only<1>{
+\begin{center}
+    \begin{tikzpicture}
+    \node (b) at (0, 0) {b};
+    \node (e) at (1, 0) {e};
+    \node (a) at (2, 0) {a};
+    \node (u) at (3, 0) {u};
+    \draw[->, bend left=90]
+    (b) edge (a)
+    (a) edge (e)
+    (e) edge (u)
+    (u) edge (b);
+    \end{tikzpicture}
 
+    beau = bounded and eventually universally bounded
+\end{center}
+}
+\pause
 
+\begin{theorem}[Beau bounds]
+Let $B>0$. There exists $\mu>0$, depending only on $B$, such that if $f$ is an infinitely renormalizable quadratic with combinatorics bounded by $B$, then \[\modulus f_n\geq \mu>0\] for large enough $n$.
+\end{theorem}
+In fact, $\modulus f_n\geq\mu$ for all $n\geq N$, where $N$ depends only on $B$ and $\modulus f$.
+\begin{theorem}[\textit{A priori} bounds]
+If $f$ is an infinitely renormalizable quadratic with bounded combinatorics, then $f$ has \textit{a priori} bounds.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Rigidity}
+\begin{theorem}[Rigidity]
+Let $f$ and $g$ be infinitely renormalizable quadratics with bounded combinatorics. Assume that the combinatorial models of $f_n$ and $g_n$ coincide for each $n$. Then $f=g$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Proof of rigidity}
+
+\only<1>{
+Consider a renormalization $f_n$.
+\begin{center}
+    \includegraphics[scale=0.1]{p12_schematic.png}
+\end{center}
+The dynamical picture gives rise to the domain $S_n$, drawn in orange.
+\begin{center}
+    \includegraphics[scale=0.1]{s_domain.png}
+\end{center}
+}
+
+\only<2>{
+The existence of \textit{a priori} bounds implies that the $S_n$ domains and the annular domains $A_n$ (between $S_n$ and $S_{n+1}$) have bounded geometry.
+\begin{center}
+    \includegraphics[scale=0.1]{t_domain.png}
+\end{center}
+Bounded combinatorics and the upper bound on the thickness of the annular domains $A_n$ ensures that the amount of twist across any $A_n$ is bounded.
+}
+
+\only<3>{
+\begin{enumerate}
+\item Coincidence of the combinatorial models implies that $f$ and $g$ are topologically equivalent.
+\item Bounded geometry and bounded twists, together with Sullivan's pullback argument, allow us to promote the topological equivalence to quasiconformal equivalence.
+\item Inou's invariant line theorem allows us to promote the quasiconformal equivalence to hybrid equivalence.
+\item Hybrid equivalence here implies conformal equivalence.
+\end{enumerate}
+}
+\end{frame}
+
+% \begin{frame}{Motivation}
+% \begin{enumerate}
+%     \item Understanding quadratic dynamics amounts to understanding the Mandelbrot set.
+%     \item The Mandelbrot set is well-understood, except for parameters $c$ where the corresponding quadratic $f_c$ admits infinitely many renormalizations.
+%     \item For these $c$, the goal is to prove the existence of \textit{a priori} bounds.
+% \end{enumerate}
+% \end{frame}
 
 \end{document}
